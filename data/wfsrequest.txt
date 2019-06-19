@@ -1,0 +1,1 @@
+http://46.226.109.134:8080/geoserver/euskalgeo/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=euskalgeo:udalerriak&maxFeatures=5000&outputFormat=SHAPE-ZIP
