@@ -10,14 +10,14 @@ class Modua(Enum):
 aukerak = {
 	Modua.ESKUALDEKA: {
 		'izenak': {'es_iz_e_2': 'izena', 'es_kod_2': 'kodea'},
-		'fitxategia': 'Eskualdeak.shp',
+		'fitxategia': 'Eskualdeak',
 	},
 	Modua.HERRIKA: {
 		'izenak': {'iz_euskal': 'izena', 'ud_kodea': 'kodea'},
-		'fitxategia': 'udalerriak.shp'
+		'fitxategia': 'udalerriak'
 	},
 	Modua.HERRIALDEKA: {
 		'izenak': {'he_iz_e': 'izena', 'he_kod': 'kodea'},
-		'fitxategia': 'Herrialdeak.shp',
+		'fitxategia': 'Herrialdeak',
 	},
 }

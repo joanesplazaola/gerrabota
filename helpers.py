@@ -6,9 +6,7 @@ from constants import aukerak
 
 
 def jaso_datuak(modua):
-	gdf = gpd.read_file(f'data/{aukerak[modua]["fitxategia"]}')
-	gdf.rename(columns=aukerak[modua]["izenak"], inplace=True)
-	return gdf
+	return gpd.read_file(f'data/{aukerak[modua]["fitxategia"]}.geojson', driver='GeoJSON')
 
 
 def jaso_kolore_ilunak():
@@ -17,7 +15,8 @@ def jaso_kolore_ilunak():
 	filtered_colors = dict()
 	for color, val in all_colors.items():
 		hue, s, v = mcolors.rgb_to_hsv(mcolors.to_rgb(val))
-		if s > 0.2 and v < 0.9: filtered_colors[color] = val
+		if s > 0.2 and v < 0.9:
+			filtered_colors[color] = val
 	return list(filtered_colors.keys())
 
 
@@ -35,9 +34,14 @@ def konkistatu(erasotzailea, erasotua):
 	return erasotzailea_puntu * random() > erasotua_puntu * random()
 
 
-def erakutsi_mapa(inperioak, lurralde_koloreak, ax):
+def erakutsi_mapa(inperioak, lurralde_koloreak, ax, erasotzailea=None, erasotua=None):
 	for i, row in inperioak.iterrows():
-		plot_series(inperioak.loc[[i], 'geometry'], ax=ax, color=lurralde_koloreak[row['jabea']])
+		kwargs = {}
+		if row['jabea'] == erasotzailea:
+			kwargs = {'edgecolor': 'black'}
+		if row['jabea'] == erasotua:
+			kwargs = {'edgecolor': 'red'}
+		plot_series(inperioak.loc[[i], 'geometry'], ax=ax, color=lurralde_koloreak[row['jabea']], **kwargs)
 	plt.pause(0.0001)
 	plt.draw()
 
